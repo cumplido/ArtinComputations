@@ -15,7 +15,7 @@ def NonCyclicD4():
     L2=[]
     for u1 in L1:
         for u3 in L1:
-            if u1*u3*u1==u3*u1*u3 and u1<>u3: L2 = L2+[[u1,u3]]
+            if u1*u3*u1==u3*u1*u3 and u1!=u3: L2 = L2+[[u1,u3]]
     L3=[]
     for v in L2:
         u1=v[0]
@@ -63,7 +63,7 @@ def NonCyclicConjugationD4():
         return K3
     K1=L2
     K2=[]
-    while K1<>[]:
+    while K1:
         u=K1[0]
         K2=K2+[u]
         K3=ClasseConjugaison(u)
@@ -73,7 +73,7 @@ def NonCyclicConjugationD4():
 #PROCEDURE NonCyclicConjugationD4_1():
 #INPUT: None.
 #OUPUT: List of non cyclic homomorphisms f from A[D4] to S6 up to 
-#conjugation satisfying f(s1)<>f(s2), f(s1)<>f(s4) and f(s2)<>f(s4).
+#conjugation satisfying f(s1)!=f(s2), f(s1)!=f(s4) and f(s2)!=f(s4).
 #Each homomorphism is given by a 4-tuple (u1,u2,u3,u4), where ui corresponds 
 #to the image of si under the homomorphism.
 #REMARK: We get 0 homomorphism.
@@ -82,7 +82,7 @@ def NonCyclicConjugationD4_1():
     L1=NonCyclicConjugationD4()
     L2=[]
     for v in L1:
-        if v[0]<>v[1] and v[0]<>v[3] and v[1]<>v[3]: L2=L2 + [v]
+        if v[0]!=v[1] and v[0]!=v[3] and v[1]!=v[3]: L2=L2 + [v]
     return L2
 
 #PROCEDURE NonCyclicD4_2():
@@ -118,7 +118,7 @@ def NonCyclicConjugationD4_2():
 #PROCEDURE NonCyclicConjugationD4_3(L1):
 #INPUT: None.
 #OUTPUT: List of non cyclic homomorphisms f from A[D4] to S6 such that 
-#f(s1)=f(s2) and f(s1.s3.s2.s1.s3.s1)<>1 up to conjugation.
+#f(s1)=f(s2) and f(s1.s3.s2.s1.s3.s1)!=1 up to conjugation.
 #Each homomorphism is given by a 4-tuple (u1,u2,u3,u4), where ui corresponds  
 #to the image of si under the homomorphism.
 #REMARK: We get 0 homomorphism in the list.
@@ -131,7 +131,7 @@ def NonCyclicConjugationD4_3():
     L3=[]
     for v in L2:
         y=v[0]*v[2]*v[0]*v[1]*v[2]*v[0]
-        if y<>u0: L3=L3+[v]
+        if y!=u0: L3=L3+[v]
     return L3
 
 ##########################
@@ -191,7 +191,7 @@ def ExceptionalCaseE6():
 #PROCEDURE ComputeSetE1ofF4():
 #INPUT: None.
 #OUTPUT: List of triples (u1,u2,u3) of elements of S6 such that u1*u2*u1 = 
-#u2*u1*u2, u1*u3 = u3*u1, u2*u3 = u3*u2, u1 <> u2 and ord(u3) in {3, 6}.
+#u2*u1*u2, u1*u3 = u3*u1, u2*u3 = u3*u2, u1 != u2 and ord(u3) in {3, 6}.
 #REMARK: We get 1440 elements in the list.
 
 def ComputeSetE1ofF4():
@@ -200,11 +200,11 @@ def ComputeSetE1ofF4():
     u0=G("()")
     L2=[]
     for u in L1:
-        if u<>u0 and u^2<>u0 and u^6==u0: L2=L2+[u]
+        if u!=u0 and u^2!=u0 and u^6==u0: L2=L2+[u]
     L3=[]
     for u1 in L1:
         for u2 in L1:
-            if u1*u2*u1==u2*u1*u2 and u1<>u2: L3=L3+[[u1,u2]]
+            if u1*u2*u1==u2*u1*u2 and u1!=u2: L3=L3+[[u1,u2]]
     L4=[]
     for u in L3:
         for u3 in L2:
@@ -214,7 +214,7 @@ def ComputeSetE1ofF4():
 #PROCEDURE ComputeSetE10ofF4():
 #INPUT: None.
 #OUTPUT: List of triples (u1,u2,u3) of elements of S6 such that u1*u2*u1 =  u2*u1*u2, 
-#u1*u3 = u3*u1, u2*u3 = u3*u2, u1 <> u2 and ord(u3) in {3, 6} up to conjugation.
+#u1*u3 = u3*u1, u2*u3 = u3*u2, u1 != u2 and ord(u3) in {3, 6} up to conjugation.
 #REMARK: We get the following 6 elements in the list:
 #[(1,2), (2,3), (4,5,6)]
 #[(1,2,3,4,5,6), (1,6,3,2,5,4), (1,3,5)(2,4,6)]
@@ -242,7 +242,7 @@ def ComputeSetE10ofF4():
         return K1
     L2=[]
     L3=ComputeSetE1ofF4()
-    while L3<>[]:
+    while L3:
         u=L3[0]
         L2=L2+[u]
         L4=Operation3(u)
@@ -252,7 +252,7 @@ def ComputeSetE10ofF4():
 #PROCEDURE ComputeSetE10ofF4_1():
 #INPUT: None.
 #OUTPUT: List of triples (u1,u2,u3) of elements of S6 such that u1*u2*u1 =  
-#u2*u1*u2, u1*u3 = u3*u1, u2*u3 = u3*u2, u1 <> u2 and ord(u3) in {3, 6}, up 
+#u2*u1*u2, u1*u3 = u3*u1, u2*u3 = u3*u2, u1 != u2 and ord(u3) in {3, 6}, up 
 #to conjugation, and such that (u1*u2*u3^2)^3=1.
 #REMARK: We get 6 elements in the list.
 
@@ -268,7 +268,7 @@ def ComputeSetE10ofF4_1():
 #INPUT: None.
 #OUTPUT: List of quadruples (u1,u2,u3,u4) of elements of S6 such that 
 #u1*u2*u1 = u2*u1*u2, u1*u3 = u3*u1, u1*u4 = u4*u1, u2*u3*u2*u3 = 
-#u3*u2*u3*u2, u2*u4 = u4*u2, u3*u4*u3 = u4*u3*u4, u1 <> u2 and u3 <> u4.
+#u3*u2*u3*u2, u2*u4 = u4*u2, u3*u4*u3 = u4*u3*u4, u1 != u2 and u3 != u4.
 #REMARK:  We get 1440 elements in the list.
 
 def ComputeSetE2ofF4():
@@ -277,7 +277,7 @@ def ComputeSetE2ofF4():
     L2=[]
     for u1 in L1:
         for u2 in L1:
-            if u1*u2*u1==u2*u1*u2 and u1<>u2: L2=L2+[[u1,u2]]
+            if u1*u2*u1==u2*u1*u2 and u1!=u2: L2=L2+[[u1,u2]]
     L3=[]
     for v1 in L2:
         for v2 in L2:
@@ -288,7 +288,7 @@ def ComputeSetE2ofF4():
 #INPUT: None.
 #OUTPUT: LIST of quadruples (u1,u2,u3,u4) of elements of S6 such that 
 #u1*u2*u1 = u2*u1*u2, u1*u3 = u3*u1, u1*u4 = u4*u1, u2*u3*u2*u3 = 
-#u3*u2*u3*u2, u2*u4 = u4*u2, u3*u4*u3 = u4*u3*u4, u1 <>u2 and u3 <> u4 
+#u3*u2*u3*u2, u2*u4 = u4*u2, u3*u4*u3 = u4*u3*u4, u1 !=u2 and u3 != u4 
 #up to conjugation.
 #REMARK: We get the following 2 elements in the list:
 #[(1,2), (2,3), (5,6), (4,5)],
@@ -313,7 +313,7 @@ def ComputeSetE20ofF4():
         return K1
     L2=[]
     L3=ComputeSetE2ofF4()
-    while L3<>[]:
+    while L3:
         u=L3[0]
         L2=L2+[u]
         L4=Operation3(u)
@@ -324,7 +324,7 @@ def ComputeSetE20ofF4():
 #INPUT: None.
 #OUTPUT: LIST of quadruples (u1,u2,u3,u4) of elements of S6 such that 
 #u1*u2*u1 = u2*u1*u2, u1*u3 = u3*u1, u1*u4 = u4*u1, u2*u3*u2*u3 = 
-#u3*u2*u3*u2, u2*u4 = u4*u2, u3*u4*u3 = u4*u3*u4, u1 <>u2 and u3 <> u4 
+#u3*u2*u3*u2, u2*u4 = u4*u2, u3*u4*u3 = u4*u3*u4, u1 !=u2 and u3 != u4 
 #up to conjugation, and such that (u1*u2*u3*u4)^3=1.
 #REMARK: We get 2 elements in the list.
 
@@ -410,7 +410,7 @@ def NonCyclicH3():
     L2=[]
     for u1 in L1:
         for u2 in L1:
-            if u1*u2*u1*u2*u1==u2*u1*u2*u1*u2 and u1<>u2: L2 = L2+[[u1,u2]]
+            if u1*u2*u1*u2*u1==u2*u1*u2*u1*u2 and u1!=u2: L2 = L2+[[u1,u2]]
     L3=[]
     for v in L2:
         for u3 in L1:
@@ -445,7 +445,7 @@ def NonCyclicConjugationH3():
         return K3
     L2=NonCyclicH3()
     L3=[]
-    while L2<>[]:
+    while L2:
         u=L2[0]
         L3=L3+[u]
         L4=ClasseConjugaison(u)
